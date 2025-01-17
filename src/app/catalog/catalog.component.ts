@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IProduct } from './product.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bot-catalog',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
