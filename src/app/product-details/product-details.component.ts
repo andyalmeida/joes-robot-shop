@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../catalog/product.model';
 import { CommonModule } from '@angular/common';
 
@@ -10,10 +10,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductDetailsComponent {
   @Input() product!: IProduct;
+  @Output() buy = new EventEmitter();
 
   getImageUrl() {
     return `images/robot-parts/${this.product.imageName}`;
   }
 
-  addToCart() { }
+  buyButtonClicked() {
+    this.buy.emit();
+  }
 }

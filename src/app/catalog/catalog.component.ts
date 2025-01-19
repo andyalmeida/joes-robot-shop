@@ -196,4 +196,9 @@ export class CatalogComponent {
       ? this.products 
       : this.products.filter(product => product.category === this.filter);
   }
+
+  addToCart(product: IProduct) {
+    this.cart.push(product);
+    console.log(`product ${product.name} added to cart`);
+  }
 }
