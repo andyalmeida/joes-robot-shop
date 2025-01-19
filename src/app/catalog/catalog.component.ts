@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class CatalogComponent {
   products: IProduct[];
   filter = '';
+  cart: IProduct[] = [];
 
   constructor() {
     this.products = [
@@ -202,5 +203,10 @@ export class CatalogComponent {
 
   getDiscountedClass(product: IProduct) {
     return product.discount > 0 ? ['strikethrough'] : [];
+  }
+
+  addToCart(product: IProduct) {
+      this.cart.push(product);
+      console.log(`${product.name} added to cart`);
   }
 }
