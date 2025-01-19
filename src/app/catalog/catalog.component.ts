@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IProduct } from './product.model';
-import { CommonModule } from '@angular/common';
+import { ProductDetailsComponent } from "../product-details/product-details.component";
 
 @Component({
   selector: 'bot-catalog',
-  imports: [CommonModule],
+  imports: [ProductDetailsComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
@@ -191,22 +191,9 @@ export class CatalogComponent {
     ];
   }
 
-  getImageUrl(product: IProduct) {
-    return `images/robot-parts/${product.imageName}`;
-  }
-
   getFilteredProducts() {
     return this.filter === '' 
       ? this.products 
       : this.products.filter(product => product.category === this.filter);
-  }
-
-  getDiscountedClass(product: IProduct) {
-    return product.discount > 0 ? ['strikethrough'] : [];
-  }
-
-  addToCart(product: IProduct) {
-      this.cart.push(product);
-      console.log(`${product.name} added to cart`);
   }
 }
