@@ -20,9 +20,8 @@
               </div>
             </div>
             <div class="price">
-              @if (product.discount === 0) {
-                <div>{{ product.price | currency:'USD' }}</div>
-              } @else {
+              <div [ngClass]="getDiscountedClass(product)">{{ product.price | currency:'USD' }}</div>
+              @if(product.discount > 0) {
                 <div class="discount">
                   {{ (product.price * (1 - product.discount)) | currency:'USD' }}
                 </div>
