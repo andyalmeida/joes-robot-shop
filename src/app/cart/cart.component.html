@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="header">Your Cart</h1>
+
+  @if (cartItems.length > 0) {
+  <ul class="cart">
+    <li class="cart-item" *ngFor="let product of cartItems">
+      <div class="product">
+        <div class="product-details">
+          <img [src]="getImageUrl(product)" [alt]="product.name" />
+          <div class="product-info">
+            <div class="name">{{ product.name }}</div>
+            <div class="description">{{ product.description }}</div>
+            <div class="category">Part Type: {{ product.category }}</div>
+          </div>
+        </div>
+        <div class="price">
+          <div [ngClass]="{ strikethrough: product.discount > 0 }">
+            {{ product.price | currency:'USD' }}
+          </div>
+          <div *ngIf="product.discount > 0" class="discount">
+            {{ product.price * (1 - product.discount) | currency:'USD' }}
+          </div>
+          <button (click)="removeFromCart(product)">Remove</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+  } @else {
+    <div class="empty-cart" *ngIf="cartItems.length === 0">
+      You have no items in your cart
+    </div>
+  }
+
+  <div class="total">Total: {{ cartTotal | currency:'USD' }}</div>
+</div>
