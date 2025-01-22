@@ -3,10 +3,11 @@ import { IProduct } from './product.model';
 import { ProductDetailsComponent } from "../product-details/product-details.component";
 import { CartService } from '../cart/cart.service';
 import { ProductService } from './product.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'bot-catalog',
-  imports: [ProductDetailsComponent],
+  imports: [ProductDetailsComponent, RouterLink],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
@@ -16,13 +17,18 @@ export class CatalogComponent implements OnInit {
   
   constructor(
     private cartService: CartService, 
-    private productService: ProductService
+    private productService: ProductService,
+    private route: ActivatedRoute
   ) {}
   
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
       products => this.products = products
     );
+
+    this.route.params.subscribe(params => {
+      this.filter = params['filter'] ?? '';
+    });
   }
 
   getFilteredProducts() {
