@@ -3,11 +3,11 @@ import { IProduct } from './product.model';
 import { ProductDetailsComponent } from "../product-details/product-details.component";
 import { CartService } from '../cart/cart.service';
 import { ProductService } from './product.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'bot-catalog',
-  imports: [ProductDetailsComponent, RouterLink],
+  imports: [ProductDetailsComponent, RouterLink, RouterLinkActive],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss'
 })
